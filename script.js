@@ -1,27 +1,20 @@
-//your code here 
-let bandNames = ['The Beatles', 'Nirvana', 'Led Zeppelin', 'The Rolling Stones', 'Pink Floyd'];
-
-function sortBandNames(bandNames) {
-  const articles = ['a', 'an', 'the'];
-
-  const compareBandNames = (a, b) => {
-    const nameA = a.toLowerCase().replace(/^(a|an|the)\s+/i, '');
-    const nameB = b.toLowerCase().replace(/^(a|an|the)\s+/i, '');
-    return nameA.localeCompare(nameB);
-  };
-
-  bandNames.sort(compareBandNames);
-
-  const ulElement = document.getElementById('bands');
-  ulElement.innerHTML = '';
-
-  bandNames.forEach(name => {
-    const liElement = document.createElement('li');
-    liElement.textContent = name;
-    ulElement.appendChild(liElement);
-  });
+let bandNames=['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal']
+let articles = ['A', 'AN', 'THE']
+ 
+	bandNames.sort((a,b) => (strip(a)> strip(b))? 1: -1)
+	const ref= document.getElementsByTagName("ul")[0] 
+	for (let i=0;i<bandNames.length; i++){
+		const li = document.createElement("li")
+		li.innerText= bandNames [i]
+		ref.append(li)
+	}
+function strip(word){
+	let arr = word.split(" ")
+	let s=""
+	for(let i=0;i<arr.length;i++){
+if(articles.indexOf(arr[i].toUpperCase()) === -1){
+	s=s+arr[i]
 }
-
-sortBandNames(bandNames);
-
-
+}
+return s.trim()
+}
